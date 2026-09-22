@@ -75,31 +75,39 @@ Now, Queue becomes empty, So, terminate these process of iteration.
 ```
 from collections import deque
 from collections import defaultdict
-def bfs(graph,start,visited,path):
+
+def bfs(graph, start, visited, path):
     queue = deque()
     path.append(start)
     queue.append(start)
     visited[start] = True
+
     while len(queue) != 0:
         tmpnode = queue.popleft()
+
         for neighbour in graph[tmpnode]:
             if visited[neighbour] == False:
                 path.append(neighbour)
                 queue.append(neighbour)
                 visited[neighbour] = True
+
     return path
 
 graph = defaultdict(list)
-v,e = map(int,input().split())
+
+v, e = map(int, input().split())
+
 for i in range(e):
-    u,v = map(str,input().split())
+    u, v = input().split()
     graph[u].append(v)
     graph[v].append(u)
 
 start = 'A'
 path = []
 visited = defaultdict(bool)
-traversedpath = bfs(graph,start,visited,path)
+
+traversedpath = bfs(graph, start, visited, path)
+
 print(traversedpath)
 
 ```
